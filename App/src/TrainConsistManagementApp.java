@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.*;
 
 class Bogie {
     String name;
@@ -11,40 +10,35 @@ class Bogie {
         this.capacity = capacity;
     }
 
-    // toString() for clean display output
-    @Override
     public String toString() {
         return name + " -> " + capacity;
     }
 }
 
-public class TrainConsistManagementApp {
+public class TrainConsistManagementApp
+{
 
     public static void main(String[] args) {
 
-        System.out.println("============================================");
-        System.out.println(" UC7 - Sort Bogies by Capacity (Comparator) ");
-        System.out.println("============================================\n");
+        System.out.println("=== Train Consist Management App ===");
 
         List<Bogie> bogies = new ArrayList<>();
 
         bogies.add(new Bogie("Sleeper", 72));
-        bogies.add(new Bogie("AC Chair", 56));
-        bogies.add(new Bogie("First Class", 24));
-        bogies.add(new Bogie("General", 90));
+        bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("First Class", 40));
 
-        System.out.println("Before Sorting:");
-        for (Bogie b : bogies) {
+        List<Bogie> filteredBogies = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
+
+        System.out.println("Filtered Bogies (Capacity > 60):");
+
+        for (Bogie b : filteredBogies) {
             System.out.println(b);
         }
 
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
-
-        System.out.println("\nAfter Sorting by Capacity:");
-        for (Bogie b : bogies) {
-            System.out.println(b);
-        }
-
+        System.out.println("Program continues...");
         System.out.println("\nUC7 sorting completed...");
         System.out.println("\nUC6 bogie-capacity mapping completed...");
         System.out.println("\nNote:");
