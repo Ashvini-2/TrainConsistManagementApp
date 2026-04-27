@@ -15,6 +15,9 @@ public class TrainConsistManagementApp {
                 }
             }
         }
+
+
+
         System.out.println("Sorted Capacities:");
 
         for (int c : capacities) {
